@@ -1,0 +1,45 @@
+<!--cross realm example-->
+<html>
+    <head>
+        <script>
+            // test arr
+            function testArr(arr) {
+                console.log('arguments---', arguments, Object.getOwnPropertyNames(arguments), Array.isArray(arguments), Object.prototype.toString.call(arguments))
+                const iframe = frames[0];
+                // This code and the iframe’s code exist in
+                // different realms. Therefore, global variables
+                // such as Array are different:
+                console.log("Array === iframe.Array", Array === iframe.Array); // false
+                console.log("arr instanceof Array:", arr instanceof Array); // false
+                console.log("arr instanceof iframe.Array:", arr instanceof iframe.Array); // true
+                // But: symbols are the same
+                console.log("Symbol.iterator and iframe.Symbol.iterator: ", Symbol.iterator ===
+                            iframe.Symbol.iterator); // true
+            }
+            //test obj
+            function testObj(obj) {
+                const iframe = frames[0];
+                console.log('obj instanceof Object:', obj instanceof Object)
+                console.log('obj instanceof iframe.Object:', obj instanceof iframe.Object)
+            }
+
+            // how to guarentee array is array? still work on
+            // (function isArrayCheck(){
+            //     const arr = []
+            //     Object.setPrototypeOf(arr, null)
+            //     console.log("arr instanceof Array:", arr instanceof Array)
+            //     console.log("Array.isArray(arr):", Array.isArray(arr))
+            //     console.log("arr.constructor", arr.constructor)
+            //     // Object.getOwnPropertyNames returns an array of all properties 
+            //     // (including non-enumerable properties except for those which use Symbol)
+            //     console.log("Object.getOwnPropertyNames:", Object.getOwnPropertyNames(arr))
+            //     console.log("Object.prototype.toString.call:",Object.prototype.toString.call(arr))
+            // })()
+            
+        </script>
+    </head>
+    <body>
+        <iframe srcdoc="<script>window.parent.testArr([]);window.parent.testObj({})</script>">
+    </iframe>
+    </body>
+</html>

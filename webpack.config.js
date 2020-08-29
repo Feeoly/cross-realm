@@ -12,7 +12,7 @@ module.exports = {
     entry: ['@babel/polyfill', './src/index.js', './src/symbol.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'my-first-webpack.bundle.js'
+        filename: 'my.bundle.js'
     },
     devtool: 'source-map',
     plugins: [
@@ -57,23 +57,6 @@ module.exports = {
                           ],
                         ],
                     },
-                    // options:{
-                    //     "presets": [
-                    //         ["@babel/preset-env", {
-                    //         "targets": {
-                    //           "browsers": [
-                    //             "ie >= 9"
-                    //           ]
-                    //         }
-                    //       }]
-                    //     ],
-                    //     plugins: [ //其他小插件
-                    //         "@babel/plugin-transform-modules-commonjs",
-                    //         ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                    //         ["@babel/plugin-proposal-class-properties", { "loose" : true }],
-                    //         "@babel/plugin-transform-runtime",
-                    //     ]
-                    // }
                 },
                 //include: path.resolve(__dirname, 'src'), // include js
                 exclude: /node_modules/, // exclude js
